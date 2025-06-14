@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Intergaláctica de Rick and Morty</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand logo-font" href="#">Guía Intergaláctica</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="explorer.html">Explorar Personajes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section text-white text-center d-flex align-items-center justify-content-center">
+        <div class="container fade-in-section">
+            <h1 class="display-3 logo-font">Guía Intergaláctica de Rick and Morty</h1>
+            <p class="lead">Explora, busca y descubre todos los personajes del multiverso.</p>
+            <a href="explorer.html" class="btn btn-primary btn-lg cta-button">¡Empieza a Explorar!</a>
+        </div>
+    </header>
+
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center logo-font accent-color mb-5">¿Qué puedes hacer?</h2>
+            <div class="row text-center g-4">
+                <div class="col-lg-4 col-md-6 fade-in-section">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon mb-3"><i class="fas fa-users fa-3x"></i></div>
+                            <h4 class="card-title logo-font">Explora Personajes</h4>
+                            <p class="card-text">Navega a través de un listado completo de cientos de personajes de todas las dimensiones conocidas y por conocer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in-section">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon mb-3"><i class="fas fa-search-location fa-3x"></i></div>
+                            <h4 class="card-title logo-font">Busca y Descubre</h4>
+                            <p class="card-text">Usa el buscador para encontrar a tus personajes favoritos y descubre detalles como su origen y su estado actual.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 fade-in-section">
+                     <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon mb-3"><i class="fas fa-book-open fa-3x"></i></div>
+                            <h4 class="card-title logo-font">Consulta Episodios</h4>
+                            <p class="card-text">Accede a la información de cada personaje para saber en qué episodios ha aparecido a lo largo de la serie.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="showcase" class="py-5 bg-darker fade-in-section">
+        <div class="container">
+            <h2 class="text-center logo-font accent-color mb-5">Personajes Destacados</h2>
+            <div id="characterCarousel" class="carousel slide" data-bs-ride="carousel">
+            
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card showcase-card">
+                                    <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" class="card-img-top" alt="Rick Sanchez">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title logo-font">Rick Sanchez</h5>
+                                        <p class="card-text">"¡Wubba Lubba Dub Dub!"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card showcase-card">
+                                    <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" class="card-img-top" alt="Morty Smith">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title logo-font">Morty Smith</h5>
+                                        <p class="card-text">"Oh, geez, Rick..."</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card showcase-card">
+                                    <img src="https://rickandmortyapi.com/api/character/avatar/3.jpeg" class="card-img-top" alt="Summer Smith">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title logo-font">Summer Smith</h5>
+                                        <p class="card-text">"Losers look stuff up while the rest of us are carpe-ing all them diems."</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="carousel-item">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card showcase-card">
+                                <img src="https://rickandmortyapi.com/api/character/avatar/4.jpeg" class="card-img-top" alt="Beth Smith">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title logo-font">Beth Smith</h5>
+                                    <p class="card-text">"I'm a real monster, but I'm also a real mom."</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                             <div class="card showcase-card">
+                                <img src="https://rickandmortyapi.com/api/character/avatar/5.jpeg" class="card-img-top" alt="Jerry Smith">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title logo-font">Jerry Smith</h5>
+                                    <p class="card-text">"Life is effort and I'll stop when I die!"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                             <div class="card showcase-card">
+                                <img src="https://rickandmortyapi.com/api/character/avatar/242.jpeg" class="card-img-top" alt="Mr. Poopybutthole">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title logo-font">Mr. Poopybutthole</h5>
+                                    <p class="card-text">"Ooh wee!"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#characterCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#characterCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+        </div>
+    </section>
+
+    <section id="interactive-portal" class="py-5 text-center fade-in-section">
+    <div class="container">
+        <h2 class="text-center logo-font accent-color mb-4">Viaja por el Multiverso</h2>
+        <p class="lead mb-4">Haz clic en el portal para viajar a una ubicación aleatoria y conocer a uno de sus habitantes.</p>
+
+        <div id="portal-container" class="mb-4">
+            <img src="assets/portal.gif" 
+                alt="Portal de Rick y Morty" 
+                id="portal-gif" 
+                class="img-fluid"
+                style="cursor: pointer; max-width: 300px;">
+        </div>
+
+        <div id="location-result" class="mt-4" style="display: none;">
+            </div>
+    </div>
+    </section>
+
+    <section class="cta-section text-center py-5 fade-in-section">
+        <div class="container">
+            <h2 class="logo-font">¿Listo para viajar por el multiverso?</h2>
+            <p class="lead mb-4">Tu aventura dimensional está a solo un clic de distancia.</p>
+            <a href="explorer.html" class="btn btn-primary btn-lg cta-button">¡Llévame al Explorador!</a>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p>&copy; 2025 - Creado por [Tu Nombre]. Un proyecto para Diseño Web Avanzado.</p>
+            <p>Datos proporcionados por <a href="https://rickandmortyapi.com/" target="_blank" class="accent-color">The Rick and Morty API</a>.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/portal.js"></script> 
+</body>
+</html>
