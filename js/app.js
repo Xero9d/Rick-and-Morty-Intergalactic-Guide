@@ -110,4 +110,5 @@ $(document).ready(function() {
 
     // Carga inicial de personajes
     getCharacters(API_URL);
+
 });

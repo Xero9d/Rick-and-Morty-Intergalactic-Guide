@@ -82,4 +82,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Precarga el número total de ubicaciones al iniciar
     getTotalLocations();
+
 });
