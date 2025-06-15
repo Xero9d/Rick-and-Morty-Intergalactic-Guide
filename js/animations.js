@@ -26,3 +26,73 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(section);
     });
 });
+// js/particles-config.js
+
+tsParticles.load("particles-js", {
+    fpsLimit: 60,
+    particles: {
+        number: {
+            value: 100, // Un poco más de densidad
+            density: {
+                enable: true,
+                value_area: 800
+            }
+        },
+        color: {
+            // Mezcla de colores: 2 partes de blanco, 1 de verde
+            value: ["#ffffff", "#97F024", "#ffffff"] 
+        },
+        shape: {
+            type: "circle"
+        },
+        opacity: {
+            value: 0.8,
+            random: true,
+        },
+        size: {
+            value: 3,
+            random: true,
+        },
+        line_linked: {
+            enable: false // Mantenemos las líneas desactivadas
+        },
+        move: {
+            enable: true,
+            speed: 1.5, // Un poco más rápidas
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+        },
+        // Efecto de brillo para las partículas
+        shadow: {
+            enable: true,
+            color: "#97F024",
+            blur: 20
+        }
+    },
+    interactivity: {
+        events: {
+            onhover: {
+                enable: true,
+                mode: "bubble"
+            },
+            onclick: {
+                enable: true,
+                mode: "repulse"
+            }
+        },
+        modes: {
+            bubble: {
+                distance: 200,
+                size: 5,
+                duration: 2,
+                opacity: 1
+            },
+            repulse: {
+                distance: 150
+            }
+        }
+    },
+    retina_detect: true
+});

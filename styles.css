@@ -1,29 +1,92 @@
-/* Variables CSS para una fácil gestión de colores */
+/*
+    Hoja de Estilos Principal - Versión Final de Capas
+*/
+
+/* --- VARIABLES GLOBALES Y PALETA --- */
+/* Reemplaza este bloque completo */
 :root {
-    /* Dejamos los colores base, pero los usaremos de forma diferente */
-    --primary-bg-overlay: rgba(4, 11, 21, 0.85); /* Overlay oscuro principal */
-    --card-bg: rgba(30, 41, 59, 0.9);
-    --bg-darker-overlay: rgba(2, 4, 10, 0.9); /* Overlay para secciones alternas */
-    --text-color: #F0F0F0;
-    --accent-color: #97F024; /* Verde portal */
-    --accent-color-2: #00BCD4; /* Cian eléctrico */
+    --card-bg: rgba(15, 23, 42, 0.55); /* Más transparente para el blur */
+    --card-border: rgba(148, 163, 184, 0.2);
+    --text-color: #E0E0E0;
+    --accent-color: #9f5afd; /* Morado cósmico */
+    --accent-color-2: #3c12fa; /* Azul intenso */
+    --portal-green: #97F024; /* Nuevo color para el brillo */
     --font-logo: 'Luckiest Guy', cursive;
     --font-body: 'Roboto', sans-serif;
 }
 
-/* 1. Aplicamos el fondo global al BODY */
+/* --- CAPAS DE FONDO Y PARTÍCULAS --- */
 body {
-    /* La imagen de fondo para toda la página */
-    background: url('../assets/img/hero-background.jpg') no-repeat center center;
-    /* Fija el fondo para que no se mueva con el scroll (efecto parallax) */
-    background-attachment: fixed;
-    /* Asegura que el fondo cubra toda la pantalla */
-    background-size: cover;
-    /* Un color de fondo oscuro como fallback si la imagen no carga */
-    background-color: #040815;
-    
+    background-color: #040815; /* Solo color de fallback */
     color: var(--text-color);
     font-family: var(--font-body);
+}
+
+#background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/hero-background.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -2; /* Capa más profunda */
+}
+
+#background-layer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(4, 8, 15, 0.7); /* Este es el overlay oscuro */
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Capa de partículas, por encima del fondo */
+}
+
+
+/* --- ESTRUCTURA GENERAL DEL CONTENIDO --- */
+/* Hacemos que todo el contenido principal esté por encima de las capas de fondo */
+nav, header, section, footer {
+    position: relative;
+    z-index: 1;
+    /* Los fondos de las secciones ahora son transparentes */
+    background-color: transparent; 
+}
+
+
+/* --- SECCIONES Y TARJETAS --- */
+/* Damos padding a los contenedores internos en vez de a las secciones */
+#features .container, 
+#showcase .container, 
+#interactive-portal .container, 
+#timeline-section .container, 
+.cta-section .container, 
+footer .container {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.feature-card, .showcase-card, .character-card, .timeline-content-header, .location-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    
+    /* ¡LA MAGIA DEL DESENFOQUE! */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    
+    transition: all 0.3s ease;
+    height: 100%;
 }
 
 .logo-font {
@@ -34,31 +97,6 @@ body {
     color: var(--accent-color);
 }
 
-/* 2. Modificamos el Hero Section */
-.hero-section {
-    min-height: 100vh;
-    /* Le quitamos el fondo propio y le ponemos un overlay sutil para diferenciarlo */
-    background-color: rgba(0, 0, 0, 0.4); 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* --- Botón CTA (sin cambios) --- */
-.cta-button {
-    background-color: var(--accent-color);
-    border: none;
-    color: #000;
-    font-weight: bold;
-    transition: transform 0.2s ease-in-out;
-}
-
-.cta-button:hover {
-    background-color: var(--accent-color-2);
-    transform: scale(1.05);
-}
-
-/* --- Animación de entrada (sin cambios) --- */
 .fade-in-section {
     opacity: 0;
     transform: translateY(20px);
@@ -70,55 +108,69 @@ body {
     transform: translateY(0);
 }
 
-/* 3. Aplicamos overlays a las secciones de contenido */
-#features, #showcase, #interactive-portal, .cta-section, footer {
-    /* Todas las secciones tendrán un overlay oscuro para que el texto sea legible */
-    background-color: var(--primary-bg-overlay);
-    position: relative; /* Necesario para contextos de apilamiento */
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Para la sección del carrusel que tenía un fondo más oscuro */
-#showcase {
-    background-color: var(--bg-darker-overlay);
+.hero-section h1, .hero-section p {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-/* --- Cards (sin cambios en su color de fondo, ya usan rgba) --- */
-.feature-card, .showcase-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--accent-color-2);
+.cta-button {
+    background-color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(159, 90, 253, 0.5);
+}
+
+.cta-button:hover {
+    background-color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 0 25px rgba(60, 18, 250, 0.8);
+}
+
+.feature-card, .showcase-card, .character-card {
     border-radius: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    color: var(--text-color);
+    transition: all 0.3s ease;
     height: 100%;
 }
 
-.feature-card:hover, .showcase-card:hover {
+.feature-card:hover, .showcase-card:hover, .character-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(159, 90, 253, 0.3);
 }
 
 .feature-icon {
     color: var(--accent-color);
+    transition: transform 0.3s;
 }
 
-.showcase-card .card-img-top {
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
+.feature-card:hover .feature-icon {
+    transform: scale(1.2);
 }
 
-.showcase-card .card-body {
+.showcase-card .card-img-top, .character-card .card-img-top {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+.showcase-card .card-body, .character-card .card-body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.showcase-card .card-title {
+.showcase-card .card-title, .character-card .card-title {
     color: var(--accent-color);
 }
 
-/* --- Carrusel (sin cambios) --- */
 #showcase .carousel .carousel-item {
     transition: transform 0.6s ease-in-out;
 }
@@ -127,93 +179,6 @@ body {
     width: 5%;
 }
 
-/* 4. Modificamos el CTA Section y el Footer */
-.cta-section {
-    /* Mantenemos el gradiente pero con colores más sutiles sobre el overlay */
-    background: var(--bg-darker-overlay);
-    border-top: 2px solid var(--accent-color);
-    border-bottom: 2px solid var(--accent-color);
-    color: var(--text-color);
-}
-
-.cta-section .logo-font {
-    color: var(--accent-color-2);
-}
-
-.cta-section .cta-button {
-    background-color: var(--accent-color);
-    color: #000;
-}
-
-.cta-section .cta-button:hover {
-    background-color: var(--accent-color-2);
-    color: #000;
-}
-
-footer {
-    /* El footer también necesita el overlay */
-    background-color: var(--bg-darker-overlay);
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-}
-
-
-/* --- Estilos de Explorer y Portal (se mantienen pero se verán sobre el nuevo fondo) --- */
-/* Explorer Page */
-.character-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--accent-color-2);
-    border-radius: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.character-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(151, 240, 36, 0.3);
-}
-
-.status-indicator {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.status-indicator.alive { background-color: #55cc44; }
-.status-indicator.dead { background-color: #d63d2e; }
-.status-indicator.unknown { background-color: #9e9e9e; }
-
-/* Modal Styles */
-.modal-content {
-    background-color: #02040a;
-    border: 2px solid var(--accent-color);
-}
-.modal-header, .modal-body {
-    background-color: #101a2b;
-    color: var(--text-color);
-}
-.btn-close {
-    filter: invert(1) grayscale(100%) brightness(200%);
-}
-
-/* Pagination Styles */
-.page-link {
-    background-color: var(--card-bg);
-    color: var(--accent-color);
-    border: 1px solid var(--accent-color-2);
-}
-.page-link:hover {
-    background-color: var(--accent-color-2);
-    color: #000;
-}
-.page-item.active .page-link {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    color: #000;
-}
-
-/* Interactive Portal Section */
 #portal-gif {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -222,26 +187,8 @@ footer {
     transform: scale(1.1) rotate(90deg);
 }
 
-.location-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--accent-color-2);
-    border-radius: 15px;
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
 .location-card h3 {
     color: var(--accent-color);
-}
-
-.location-image-placeholder {
-    height: 200px;
-    background: url('../assets/img/location-placeholder.gif') no-repeat center center;
-    background-size: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    border: 1px solid var(--accent-color-2);
 }
 
 .featured-character-card {
@@ -250,44 +197,38 @@ footer {
     padding: 1rem;
 }
 
-/* --- Estilos para la Línea de Tiempo Interactiva --- */
-
 .timeline-container {
     position: relative;
     max-width: 900px;
     margin: 0 auto;
 }
 
-/* La línea central de la línea de tiempo */
 .timeline-container::after {
     content: '';
     position: absolute;
     width: 6px;
-    background-color: var(--accent-color-2);
+    background-color: var(--accent-color);
     top: 0;
     bottom: 0;
     left: 50%;
     margin-left: -3px;
-    box-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
+    box-shadow: 0 0 15px rgba(159, 90, 253, 0.7);
 }
 
-/* Contenedor para cada temporada */
 .timeline-item {
     padding: 10px 40px;
     position: relative;
-    background-color: inherit;
     width: 50%;
 }
 
-/* El círculo en la línea de tiempo (nodo de temporada) */
 .timeline-item::after {
     content: '';
     position: absolute;
     width: 25px;
     height: 25px;
     right: -12px;
-    background-color: var(--accent-color);
-    border: 4px solid #000;
+    background-color: var(--accent-color-2);
+    border: 4px solid #060722;
     top: 15px;
     border-radius: 50%;
     z-index: 1;
@@ -299,17 +240,14 @@ footer {
     transform: scale(1.2);
 }
 
-/* Items a la izquierda */
 .timeline-left {
     left: 0;
 }
 
-/* Items a la derecha */
 .timeline-right {
     left: 50%;
 }
 
-/* Flechas que apuntan desde el nodo al contenido */
 .timeline-left::before, .timeline-right::before {
     content: " ";
     height: 0;
@@ -332,22 +270,15 @@ footer {
     border-color: transparent var(--accent-color) transparent transparent;
 }
 
-/* Ajustar el círculo para los items de la derecha */
 .timeline-right::after {
     left: -13px;
 }
 
-/* Contenido principal del nodo de temporada */
 .timeline-content-header {
-    padding: 20px 30px;
-    background-color: var(--card-bg);
-    position: relative;
     border-radius: 8px;
-    border: 1px solid var(--accent-color-2);
     cursor: pointer;
 }
 
-/* Contenido expandible (inicialmente oculto) */
 .timeline-content-expandable {
     max-height: 0;
     overflow: hidden;
@@ -357,7 +288,6 @@ footer {
     margin-top: 10px;
 }
 
-/* Tarjetas para episodios y personajes */
 .episode-card, .char-card {
     background-color: #101a2b;
     border-radius: 6px;
@@ -365,6 +295,7 @@ footer {
     text-align: center;
     font-size: 0.9em;
     border: 1px solid #1e293b;
+    height: 100%;
 }
 
 .char-card img {
@@ -378,7 +309,6 @@ footer {
     font-size: 0.8em;
 }
 
-/* Media queries para pantallas pequeñas */
 @media screen and (max-width: 768px) {
     .timeline-container::after {
         left: 31px;
