@@ -16,10 +16,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- CAPA DE OPACIDAD -->
     <div id="background-layer"></div>
-s
+
+    <!-- PARTÍCULAS -->
     <div id="particles-js"></div>
 
+    <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand logo-font" href="#">Guía Intergaláctica</a>
@@ -31,11 +35,15 @@ s
                     <li class="nav-item">
                         <a class="nav-link" href="explorer.html">Explorar Personajes</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="locations.html">Explorar Ubicaciones</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- HERO SECTION -->
     <header class="hero-section text-white text-center d-flex align-items-center justify-content-center">
         <div class="container fade-in-section">
             <h1 class="display-3 logo-font">Guía Intergaláctica de Rick and Morty</h1>
@@ -44,6 +52,7 @@ s
         </div>
     </header>
 
+    <!-- QUÉ PUEDES HACER SECTION -->
     <section id="features" class="py-5">
         <div class="container">
             <h2 class="text-center logo-font accent-color mb-5">¿Qué puedes hacer?</h2>
@@ -79,6 +88,7 @@ s
         </div>
     </section>
 
+    <!-- GALERÍA DE IMAGENES -->
     <section id="showcase" class="py-5 bg-darker fade-in-section">
         <div class="container">
             <h2 class="text-center logo-font accent-color mb-5">Personajes Destacados</h2>
@@ -163,6 +173,7 @@ s
         </div>
     </section>
 
+    <!-- PORTAL INTERACTIVO -->
     <section id="interactive-portal" class="py-5 text-center fade-in-section">
     <div class="container">
         <h2 class="text-center logo-font accent-color mb-4">Viaja por el Multiverso</h2>
@@ -177,10 +188,12 @@ s
         </div>
 
         <div id="location-result" class="mt-4" style="display: none;">
+            <div id="portal-spinner" class="portal-spinner" style="display: none;"></div>
             </div>
     </div>
     </section>
 
+<!-- LINEA DE TIEMPO -->
     <section id="timeline-section" class="py-5 bg-darker fade-in-section">
         <div class="container">
             <h2 class="text-center logo-font accent-color mb-5">Línea de Tiempo de Episodios</h2>
@@ -189,7 +202,7 @@ s
         </div>
     </section>
 
-
+<!-- CTA LOCATIONS.HTML -->
     <section class="cta-section text-center py-5 fade-in-section">
         <div class="container">
             <h2 class="logo-font">¿Listo para viajar por el multiverso?</h2>
@@ -198,12 +211,15 @@ s
         </div>
     </section>
 
-    <footer class="bg-dark text-white text-center py-3">
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-10">
         <div class="container">
-            <p>&copy; 2025 - Creado por [Tu Nombre]. Un proyecto para Diseño Web Avanzado.</p>
+            <p>&copy; 2025 - Creado por Ricardo Gracia Otálvaro.</p>
             <p>Datos proporcionados por <a href="https://rickandmortyapi.com/" target="_blank" class="accent-color">The Rick and Morty API</a>.</p>
         </div>
     </footer>
+
+    <!-- SCRIPTS -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script> 

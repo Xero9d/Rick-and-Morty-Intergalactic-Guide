@@ -50,15 +50,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Crea la tarjeta del personaje
                 featuredCharacterHTML = `
-                    <h5 class="mt-3">Habitante Destacado</h5>
-                    <div class="featured-character-card d-flex align-items-center">
-                        <img src="${characterData.image}" alt="${characterData.name}" class="img-fluid rounded-circle me-3" style="width: 80px;">
-                        <div>
-                            <h6 class="logo-font mb-0">${characterData.name}</h6>
-                            <span>${characterData.species}</span>
+                <h5 class="logo-font mb-0">Habitante Destacado</h5>
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <div class="featured-character-card d-flex align-items-center">
+                            <img src="${characterData.image}" alt="${characterData.name}" class="img-fluid rounded-circle me-3" style="width: 160px;">
+                            <div>
+                                <h6 class="logo-font mb-0">${characterData.name}</h6>
+                                <span class="text-muted">${characterData.species}</span>
+                            </div>
                         </div>
                     </div>
-                `;
+                </div>
+            `;
             }
 
             // 6. Muestra toda la información en la tarjeta de resultado
@@ -66,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="location-card">
                     <h3>${locationData.name}</h3>
                     <p class="text-muted">Dimensión: ${locationData.dimension || 'Desconocida'} | Tipo: ${locationData.type || 'Desconocido'}</p>
+                    <hr class="my-4">
                     <div class="location-image-placeholder"></div>
                     ${featuredCharacterHTML}
                 </div>

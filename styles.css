@@ -1,23 +1,23 @@
 /*
-    Hoja de Estilos Principal - Versión Final de Capas
+    Hoja de Estilos Definitiva
+    Guía Intergaláctica de Rick and Morty
 */
 
 /* --- VARIABLES GLOBALES Y PALETA --- */
-/* Reemplaza este bloque completo */
 :root {
-    --card-bg: rgba(15, 23, 42, 0.55); /* Más transparente para el blur */
+    --card-bg: rgba(15, 23, 42, 0.6);
     --card-border: rgba(148, 163, 184, 0.2);
     --text-color: #E0E0E0;
-    --accent-color: #9f5afd; /* Morado cósmico */
-    --accent-color-2: #3c12fa; /* Azul intenso */
-    --portal-green: #97F024; /* Nuevo color para el brillo */
+    --text-color-darker: #a0a0b0; /* Un gris más sutil para texto secundario */
+    --accent-color: #97F024; /* Verde portal para partículas */
+    --accent-color-2: #00BCD4; /* Cian eléctrico para acentos secundarios */
     --font-logo: 'Luckiest Guy', cursive;
     --font-body: 'Roboto', sans-serif;
 }
 
 /* --- CAPAS DE FONDO Y PARTÍCULAS --- */
 body {
-    background-color: #040815; /* Solo color de fallback */
+    background-color: #040815;
     color: var(--text-color);
     font-family: var(--font-body);
 }
@@ -30,7 +30,7 @@ body {
     height: 100%;
     background: url('../assets/hero-background.jpg') no-repeat center center;
     background-size: cover;
-    z-index: -2; /* Capa más profunda */
+    z-index: -2;
 }
 
 #background-layer::after {
@@ -40,7 +40,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(4, 8, 15, 0.7); /* Este es el overlay oscuro */
+    background-color: rgba(4, 8, 15, 0.7);
 }
 
 #particles-js {
@@ -49,22 +49,16 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: -1; /* Capa de partículas, por encima del fondo */
+    z-index: -1;
 }
 
-
-/* --- ESTRUCTURA GENERAL DEL CONTENIDO --- */
-/* Hacemos que todo el contenido principal esté por encima de las capas de fondo */
+/* --- ESTRUCTURA GENERAL Y CONTENIDO --- */
 nav, header, section, footer {
     position: relative;
     z-index: 1;
-    /* Los fondos de las secciones ahora son transparentes */
     background-color: transparent; 
 }
 
-
-/* --- SECCIONES Y TARJETAS --- */
-/* Damos padding a los contenedores internos en vez de a las secciones */
 #features .container, 
 #showcase .container, 
 #interactive-portal .container, 
@@ -75,20 +69,6 @@ footer .container {
     padding-bottom: 5rem;
 }
 
-.feature-card, .showcase-card, .character-card, .timeline-content-header, .location-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    
-    /* ¡LA MAGIA DEL DESENFOQUE! */
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    
-    transition: all 0.3s ease;
-    height: 100%;
-}
-
 .logo-font {
     font-family: var(--font-logo);
 }
@@ -97,17 +77,7 @@ footer .container {
     color: var(--accent-color);
 }
 
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in-section.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+/* --- HERO SECTION --- */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -119,32 +89,27 @@ footer .container {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-.cta-button {
-    background-color: var(--accent-color);
-    border: 2px solid var(--accent-color);
-    color: #fff;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(159, 90, 253, 0.5);
-}
-
-.cta-button:hover {
-    background-color: var(--accent-color-2);
-    border-color: var(--accent-color-2);
-    transform: scale(1.1) translateY(-3px);
-    box-shadow: 0 0 25px rgba(60, 18, 250, 0.8);
-}
-
-.feature-card, .showcase-card, .character-card {
-    border-radius: 15px;
+/* --- TARJETAS Y EFECTO GLASSMORPHISM --- */
+.feature-card, .showcase-card, .character-card, .timeline-content-header, .location-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     transition: all 0.3s ease;
     height: 100%;
+    color: var(--text-color); /* CORRECCIÓN: Se asegura de que el texto sea claro */
+}
+
+.feature-card p, .showcase-card p {
+    color: var(--text-color-darker); /* CORRECCIÓN: Color específico para párrafos en tarjetas */
 }
 
 .feature-card:hover, .showcase-card:hover, .character-card:hover {
     transform: translateY(-10px);
     border-color: var(--accent-color);
-    box-shadow: 0 10px 30px rgba(159, 90, 253, 0.3);
+    box-shadow: 0 10px 30px rgba(151, 240, 36, 0.2);
 }
 
 .feature-icon {
@@ -171,32 +136,8 @@ footer .container {
     color: var(--accent-color);
 }
 
-#showcase .carousel .carousel-item {
-    transition: transform 0.6s ease-in-out;
-}
-.carousel-control-prev,
-.carousel-control-next {
-    width: 5%;
-}
 
-#portal-gif {
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#portal-gif:hover {
-    transform: scale(1.1) rotate(90deg);
-}
-
-.location-card h3 {
-    color: var(--accent-color);
-}
-
-.featured-character-card {
-    background-color: #02040a;
-    border-radius: 10px;
-    padding: 1rem;
-}
-
+/* --- LÍNEA DE TIEMPO (TIMELINE) --- */
 .timeline-container {
     position: relative;
     max-width: 900px;
@@ -212,7 +153,7 @@ footer .container {
     bottom: 0;
     left: 50%;
     margin-left: -3px;
-    box-shadow: 0 0 15px rgba(159, 90, 253, 0.7);
+    box-shadow: 0 0 15px rgba(151, 240, 36, 0.7);
 }
 
 .timeline-item {
@@ -229,7 +170,7 @@ footer .container {
     right: -12px;
     background-color: var(--accent-color-2);
     border: 4px solid #060722;
-    top: 15px;
+    top: 25px; /* Ajustado para mejor alineación vertical */
     border-radius: 50%;
     z-index: 1;
     cursor: pointer;
@@ -240,43 +181,51 @@ footer .container {
     transform: scale(1.2);
 }
 
-.timeline-left {
-    left: 0;
+.timeline-content-header {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    /* CORRECCIÓN: Centrado del contenido del nodo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 80px; /* Asegura una altura mínima uniforme */
 }
 
-.timeline-right {
-    left: 50%;
+.timeline-content-header h4 {
+    margin-bottom: 0.25rem;
 }
+.timeline-content-header p {
+    margin-bottom: 0;
+    font-size: 0.9em;
+    color: var(--text-color-darker);
+}
+
+.timeline-left { left: 0; }
+.timeline-right { left: 50%; }
+.timeline-right::after { left: -13px; }
 
 .timeline-left::before, .timeline-right::before {
     content: " ";
     height: 0;
     position: absolute;
-    top: 22px;
+    top: 32px; /* Ajustado para alinearse con el círculo */
     width: 0;
     z-index: 1;
-    border: medium solid var(--accent-color);
+    border: medium solid var(--accent-color-2);
 }
 
 .timeline-left::before {
     right: 30px;
     border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent var(--accent-color);
+    border-color: transparent transparent transparent var(--accent-color-2);
 }
 
 .timeline-right::before {
     left: 30px;
     border-width: 10px 10px 10px 0;
-    border-color: transparent var(--accent-color) transparent transparent;
-}
-
-.timeline-right::after {
-    left: -13px;
-}
-
-.timeline-content-header {
-    border-radius: 8px;
-    cursor: pointer;
+    border-color: transparent var(--accent-color-2) transparent transparent;
 }
 
 .timeline-content-expandable {
@@ -288,13 +237,29 @@ footer .container {
     margin-top: 10px;
 }
 
+.timeline-item.timeline-item--active {
+    width: 95%; /* Usamos 95% en vez de 100% para un pequeño margen visual */
+    left: 2.5% !important; /* Lo centramos un poco */
+    z-index: 10;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.timeline-item.timeline-item--active::before {
+    display: none;
+}
+
+.timeline-item.timeline-item--active .timeline-content-header {
+    align-items: flex-start;
+    text-align: left;
+}
+
 .episode-card, .char-card {
-    background-color: #101a2b;
+    background-color: rgba(15, 23, 42, 0.8);
     border-radius: 6px;
     padding: 10px;
     text-align: center;
     font-size: 0.9em;
-    border: 1px solid #1e293b;
+    border: 1px solid var(--card-border);
     height: 100%;
 }
 
@@ -309,29 +274,103 @@ footer .container {
     font-size: 0.8em;
 }
 
+.location-card div{
+    margin: 1rem;
+}
+
+.location-card h5 {
+    text-align: center;
+}
+
+.text-muted {
+    color: #a0a0b0 !important; /* El Important sirve para darle prioridad a este comando respecto al default de bootstrap */
+}
+
+.portal-spinner {
+    margin: 20px auto;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top: 5px solid var(--portal-green); /* Usamos el color verde del portal */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+.episode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.episode-button {
+    background-color: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--card-border);
+    color: var(--text-color);
+    text-align: left;
+    white-space: normal;
+    font-size: 0.9em;
+}
+
+.episode-button:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px; /* Mantenemos los bordes redondeados */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: var(--text-color); /* Nos aseguramos que el texto dentro sea claro */
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--card-border);
+}
+
+.modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.modal-title {
+    color: var(--accent-color);
+}
+
+.cta-button {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    width: 40rem;
+    color: #040815;
+    font-weight: bold;
+    font-family: var(--font-logo);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #83d11e; /* Un tono de verde un poco más oscuro */
+    border-color: #83d11e;
+    color: #040815;
+    transform: translateY(-3px);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- MEDIA QUERIES (RESPONSIVE) --- */
 @media screen and (max-width: 768px) {
-    .timeline-container::after {
-        left: 31px;
-    }
-
-    .timeline-item {
+    .timeline-container::after { left: 31px; }
+    .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+    .timeline-item::before { left: 60px; border-width: 10px 10px 10px 0; border-color: transparent var(--accent-color-2) transparent transparent; }
+    .timeline-left::after, .timeline-right::after { left: 18px; }
+    .timeline-right { left: 0%; }
+    .timeline-item.timeline-item--active {
+        left: 0 !important;
         width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-    }
-    
-    .timeline-item::before {
-        left: 60px;
-        border: medium solid var(--accent-color);
-        border-width: 10px 10px 10px 0;
-        border-color: transparent var(--accent-color) transparent transparent;
-    }
-
-    .timeline-left::after, .timeline-right::after {
-        left: 18px;
-    }
-    
-    .timeline-right {
-        left: 0%;
+        padding-left: 70px; /* Mantenemos el padding original */
     }
 }

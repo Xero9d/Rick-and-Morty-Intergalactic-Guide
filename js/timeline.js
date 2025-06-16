@@ -100,27 +100,36 @@
             const seasons = groupEpisodesBySeason(allEpisodes);
             buildTimeline(seasons);
             
-            // Añadir los event listeners para los clics
             document.querySelectorAll('.timeline-content-header').forEach(header => {
-                header.addEventListener('click', () => {
-                    const item = header.closest('.timeline-item');
-                    const contentDiv = item.querySelector('.timeline-content-expandable');
-                    const seasonNumber = item.dataset.season;
+            header.addEventListener('click', async () => { 
+                const currentItem = header.closest('.timeline-item');
+                const contentDiv = currentItem.querySelector('.timeline-content-expandable');
+
+                // Comprueba si el item que se ha clickado ya está activo
+                const isAlreadyActive = currentItem.classList.contains('timeline-item--active');
+
+                // Primero, cierra todos los items que puedan estar abiertos
+                document.querySelectorAll('.timeline-item--active').forEach(activeItem => {
+                    activeItem.classList.remove('timeline-item--active');
+                    activeItem.querySelector('.timeline-content-expandable').style.maxHeight = null;
+                });
+
+                // Si el item que se clickó NO estaba activo, ábrelo.
+                if (!isAlreadyActive) {
+                    const seasonNumber = currentItem.dataset.season;
                     const seasonEpisodes = seasons[seasonNumber];
 
-                    // Si ya está abierto, lo cerramos
-                    if (contentDiv.style.maxHeight) {
-                        contentDiv.style.maxHeight = null;
-                    } else {
-                        // Si no ha cargado el contenido, lo cargamos
-                        if (contentDiv.dataset.loaded !== "true") {
-                            loadSeasonContent(seasonNumber, seasonEpisodes, contentDiv);
-                        }
-                        // Lo abrimos. El +50 es un pequeño extra para asegurar que todo quepa.
-                        contentDiv.style.maxHeight = contentDiv.scrollHeight + 50 + "px";
+                    currentItem.classList.add('timeline-item--active'); // <-- AÑADE LA CLASE ACTIVA
+
+                    if (contentDiv.dataset.loaded !== "true") {
+                        await loadSeasonContent(seasonNumber, seasonEpisodes, contentDiv);
                     }
-                });
+                    
+                    contentDiv.style.maxHeight = contentDiv.scrollHeight + 50 + "px";
+                }
             });
+        });
+
 
         } catch (error) {
             timelineContainer.innerHTML = '<p class="text-center text-danger">No se pudo construir la línea temporal. El universo es un lugar caótico.</p>';
