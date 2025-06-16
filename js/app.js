@@ -8,6 +8,7 @@ $(document).ready(function() {
 
     // Función principal para obtener y mostrar personajes
     async function getCharacters(url) {
+
         try {
             const response = await $.ajax({ url }); // Usando jQuery.ajax como pide el enunciado
             displayCharacters(response.results);

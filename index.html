@@ -193,7 +193,7 @@
     </div>
     </section>
 
-<!-- LINEA DE TIEMPO -->
+    <!-- LINEA DE TIEMPO -->
     <section id="timeline-section" class="py-5 bg-darker fade-in-section">
         <div class="container">
             <h2 class="text-center logo-font accent-color mb-5">Línea de Tiempo de Episodios</h2>
@@ -202,12 +202,38 @@
         </div>
     </section>
 
-<!-- CTA LOCATIONS.HTML -->
+    <!-- CTA LOCATIONS.HTML -->
     <section class="cta-section text-center py-5 fade-in-section">
         <div class="container">
             <h2 class="logo-font">¿Listo para viajar por el multiverso?</h2>
             <p class="lead mb-4">Tu aventura dimensional está a solo un clic de distancia.</p>
-            <a href="explorer.html" class="btn btn-primary btn-lg cta-button">¡Llévame al Explorador!</a>
+            <a href="locations.html" class="btn btn-primary btn-lg cta-button">¡Llévame al Explorador de Ubicaciones!</a>
+        </div>
+    </section>
+
+    <!-- CTAs LINKS EXTERNOS -->
+     <section id="external-links" class="py-5 text-center fade-in-section">
+        <div class="container">
+            <h2 class="text-center logo-font accent-color mb-5">¿Quieres Aún Más Wubba Lubba Dub Dub?</h2>
+            <div class="row align-items-center g-5">
+
+                <div class="col-md-6">
+                    <h4 class="logo-font">Ver la Serie</h4>
+                    <p class="text-muted mb-4">Haz clic en Rick para ver todos los episodios en la plataforma oficial.</p>
+                    <a href="https://play.max.com/show/ab553cdc-e15d-4597-b65f-bec9201fd2dd" target="_blank" class="gif-link">
+                        <img src="assets/rick-and-morty.gif" alt="Rick agresivo" class="img-fluid">
+                    </a>
+                </div>
+
+                <div class="col-md-6">
+                    <h4 class="logo-font">Explorar la Wiki</h4>
+                    <p class="text-muted mb-4">¿Necesitas saber el origen del Hombre Pájaro o los detalles de la Federación Galáctica? La Rickipedia lo tiene todo.</p>
+                    <a href="https://rickandmorty.fandom.com/wiki/Rickipedia" target="_blank" class="btn btn-lg cta-button">
+                        Ir a la Rick and Morty Wiki
+                    </a>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -225,6 +251,11 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script> 
     <script src="js/animations.js"></script>
     <script src="js/portal.js"></script>
-    <script src="js/timeline.js"></script> 
+    <script src="js/timeline.js"></script>
+    <script src="js/sounds.js"></script>
+    
+    <!-- AUDIO -->
+    <audio id="click-sound" src="assets/click-sound.mp3" preload="auto"></audio>
+
 </body>
 </html>

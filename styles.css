@@ -342,10 +342,10 @@ footer .container {
 .cta-button {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
-    width: 40rem;
+    width: 20rem;
     color: #040815;
     font-weight: bold;
-    font-family: var(--font-logo);
+    
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -355,6 +355,15 @@ footer .container {
     color: #040815;
     transform: translateY(-3px);
 }
+
+body {
+    transition: opacity 0.4s ease-in-out;
+}
+
+body.page-fade-out {
+    opacity: 0;
+}
+
 
 @keyframes spin {
     0% { transform: rotate(0deg); }

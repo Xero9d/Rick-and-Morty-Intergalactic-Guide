@@ -7,8 +7,7 @@ $(document).ready(function() {
     const paginationContainer = $('#pagination-container');
 
     async function getLocations(url) {
-        // Podríamos añadir un spinner aquí también
-        gallery.html('<div class="col-12 text-center"><div class="portal-spinner" style="display: block;"></div></div>');
+
         try {
             const response = await $.ajax({ url });
             displayLocations(response.results);
