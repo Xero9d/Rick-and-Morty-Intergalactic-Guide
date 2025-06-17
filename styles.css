@@ -1,4 +1,5 @@
 /* --- VARIABLES GLOBALES Y PALETA, sirve para generar una serie de variables de color, o tipografías a las que llamar fácilmente después, evitando tener que poner siempre los mismos rgba o las tipografías --- */
+
 :root {
     --card-bg: rgba(15, 23, 42, 0.6);
     --card-border: rgba(148, 163, 184, 0.2);
@@ -23,7 +24,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('../assets/hero-background.jpg') no-repeat center center;
+    background: url('assets/hero-background.jpg') no-repeat center center;
     background-size: cover;
     z-index: -2;
 }
@@ -135,7 +136,7 @@ footer .container {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-/* --- TARJETAS Y EFECTO GLASSMORPHISM --- */
+/* --- TARJETAS Y EFECTO ACRISTALADO --- */
 .feature-card, .showcase-card, .character-card, .timeline-content-header, .location-card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -145,11 +146,11 @@ footer .container {
     backdrop-filter: blur(8px);
     transition: all 0.3s ease;
     height: 100%;
-    color: var(--text-color); /* CORRECCIÓN: Se asegura de que el texto sea claro */
+    color: var(--text-color); 
 }
 
 .feature-card p, .showcase-card p {
-    color: var(--text-color-darker); /* CORRECCIÓN: Color específico para párrafos en tarjetas */
+    color: var(--text-color-darker);
 }
 
 .feature-card:hover, .showcase-card:hover, .character-card:hover {
@@ -183,7 +184,7 @@ footer .container {
 }
 
 
-/* --- LÍNEA DE TIEMPO (TIMELINE) --- */
+/* --- LÍNEA DE TIEMPO --- */
 .timeline-container {
     position: relative;
     max-width: 900px;
@@ -216,7 +217,7 @@ footer .container {
     right: -12px;
     background-color: var(--accent-color-2);
     border: 4px solid #060722;
-    top: 25px; /* Ajustado para mejor alineación vertical */
+    top: 25px; 
     border-radius: 50%;
     z-index: 1;
     cursor: pointer;
@@ -230,13 +231,12 @@ footer .container {
 .timeline-content-header {
     padding: 1rem 1.5rem;
     cursor: pointer;
-    /* CORRECCIÓN: Centrado del contenido del nodo */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 80px; /* Asegura una altura mínima uniforme */
+    min-height: 80px;
 }
 
 .timeline-content-header h4 {
@@ -256,7 +256,7 @@ footer .container {
     content: " ";
     height: 0;
     position: absolute;
-    top: 32px; /* Ajustado para alinearse con el círculo */
+    top: 32px;
     width: 0;
     z-index: 1;
     border: medium solid var(--accent-color-2);
@@ -284,8 +284,8 @@ footer .container {
 }
 
 .timeline-item.timeline-item--active {
-    width: 95%; /* Usamos 95% en vez de 100% para un pequeño margen visual */
-    left: 2.5% !important; /* Lo centramos un poco */
+    width: 95%; 
+    left: 2.5% !important;
     z-index: 10;
     transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
@@ -335,7 +335,7 @@ footer .container {
 .portal-spinner {
     margin: 20px auto;
     border: 5px solid rgba(255, 255, 255, 0.2);
-    border-top: 5px solid var(--portal-green); /* Usamos el color verde del portal */
+    border-top: 5px solid var(--portal-green); 
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -366,11 +366,11 @@ footer .container {
 .modal-content {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 16px; /* Mantenemos los bordes redondeados */
+    border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-    color: var(--text-color); /* Nos aseguramos que el texto dentro sea claro */
+    color: var(--text-color); 
 }
 
 .modal-header {
@@ -396,7 +396,7 @@ footer .container {
 }
 
 .cta-button:hover {
-    background-color: #83d11e; /* Un tono de verde un poco más oscuro */
+    background-color: #83d11e;
     border-color: #83d11e;
     color: #040815;
     transform: translateY(-3px);
@@ -430,7 +430,6 @@ body.page-fade-out {
     box-shadow: 0 0 0 0.25rem rgba(151, 240, 36, 0.25);
 }
 
-/* Para que las opciones del desplegable también se vean bien en temas oscuros (puede no funcionar en todos los navegadores) */
 .form-select option {
     background-color: #040815;
     color: var(--text-color);
@@ -441,7 +440,7 @@ body.page-fade-out {
     100% { transform: rotate(360deg); }
 }
 
-/* --- MEDIA QUERIES (RESPONSIVE) --- */
+/* --- MEDIA QUERIES --- */
 @media screen and (max-width: 768px) {
     .timeline-container::after { left: 31px; }
     .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
@@ -451,6 +450,6 @@ body.page-fade-out {
     .timeline-item.timeline-item--active {
         left: 0 !important;
         width: 100%;
-        padding-left: 70px; /* Mantenemos el padding original */
+        padding-left: 70px;
     }
 }
