@@ -1,5 +1,3 @@
-// js/timeline.js - Versión Definitiva con Modal
-
 document.addEventListener('DOMContentLoaded', () => {
     const timelineContainer = document.querySelector('.timeline-container');
     const API_EPISODE_URL = 'https://rickandmortyapi.com/api/episode';

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variable para almacenar el número total de ubicaciones
     let totalLocations = 0;
 
-    // 1. Obtenemos el número total de ubicaciones al cargar la página
+    // Obtenemos el número total de ubicaciones al cargar la página
     async function getTotalLocations() {
         try {
             const response = await fetch(`${API_BASE_URL}location`);
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 2. Función principal que se activa al hacer clic en el portal
+    // Función principal que se activa al hacer clic en el portal
     async function travelToRandomLocation() {
         if (totalLocations === 0) {
             resultArea.innerHTML = `<p class="text-danger">El portal no está calibrado. Vuelve a intentarlo.</p>`;
@@ -34,17 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const randomLocationId = Math.floor(Math.random() * totalLocations) + 1;
 
         try {
-            // 3. Obtiene los datos de la ubicación aleatoria
+            // Obtiene los datos de la ubicación aleatoria
             const locationResponse = await fetch(`${API_BASE_URL}location/${randomLocationId}`);
             const locationData = await locationResponse.json();
 
             let featuredCharacterHTML = '<p>Esta ubicación está deshabitada o sus habitantes son demasiado tímidos.</p>';
             
-            // 4. Si hay residentes, elige uno al azar
+            // Si hay residentes, elige uno al azar
             if (locationData.residents && locationData.residents.length > 0) {
                 const randomResidentUrl = locationData.residents[Math.floor(Math.random() * locationData.residents.length)];
                 
-                // 5. Obtiene los datos del personaje residente
+                // Obtiene los datos del personaje residente
                 const characterResponse = await fetch(randomResidentUrl);
                 const characterData = await characterResponse.json();
                 
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             }
 
-            // 6. Muestra toda la información en la tarjeta de resultado
+            // Muestra toda la información en la tarjeta de resultado
             resultArea.innerHTML = `
                 <div class="location-card">
                     <h3>${locationData.name}</h3>

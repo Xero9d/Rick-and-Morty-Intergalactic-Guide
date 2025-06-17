@@ -1,5 +1,3 @@
-// js/sounds.js (Versión con transiciones de página)
-
 document.addEventListener('DOMContentLoaded', () => {
 
     const clickSound = document.getElementById('click-sound');
@@ -19,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (clickableElement && clickSound) {
             clickSound.currentTime = 0;
             clickSound.play();
-
-            // --- LÓGICA DE NAVEGACIÓN AÑADIDA ---
 
             // Comprobamos si el elemento es un enlace de navegación interno
             const isInternalNav = clickableElement.tagName === 'A' &&
