@@ -364,6 +364,31 @@ body.page-fade-out {
     opacity: 0;
 }
 
+/* Estilo general para los inputs y selects */
+.form-control, .form-select {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-color);
+}
+
+/* Color del texto del placeholder */
+.form-control::placeholder {
+    color: var(--text-color-darker);
+}
+
+/* Estilo al estar enfocado (focus) */
+.form-control:focus, .form-select:focus {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(151, 240, 36, 0.25);
+}
+
+/* Para que las opciones del desplegable también se vean bien en temas oscuros (puede no funcionar en todos los navegadores) */
+.form-select option {
+    background-color: #040815;
+    color: var(--text-color);
+}
 
 @keyframes spin {
     0% { transform: rotate(0deg); }

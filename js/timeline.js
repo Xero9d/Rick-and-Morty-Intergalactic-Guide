@@ -1,15 +1,18 @@
+// js/timeline.js - Versión Definitiva con Modal
 
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const timelineContainer = document.querySelector('.timeline-container');
     const API_EPISODE_URL = 'https://rickandmortyapi.com/api/episode';
+    
+    // Preparamos la instancia del Modal de Bootstrap que está en index.html
+    const episodeModal = new bootstrap.Modal(document.getElementById('episodeModal'));
 
     let allEpisodes = [];
 
-    // Función para obtener todas las páginas de una API
+    // Función para obtener todos los episodios de la API
     async function fetchAllPages(url) {
         let results = [];
         let nextUrl = url;
-
         while (nextUrl) {
             const response = await fetch(nextUrl);
             const data = await response.json();
@@ -19,19 +22,17 @@
         return results;
     }
 
-    // Agrupa los episodios por temporada
+    // Función para agrupar los episodios por temporada
     function groupEpisodesBySeason(episodes) {
         return episodes.reduce((acc, episode) => {
             const seasonNumber = parseInt(episode.episode.substring(1, 3), 10);
-            if (!acc[seasonNumber]) {
-                acc[seasonNumber] = [];
-            }
+            if (!acc[seasonNumber]) { acc[seasonNumber] = []; }
             acc[seasonNumber].push(episode);
             return acc;
         }, {});
     }
 
-    // Crea el HTML para la línea de tiempo
+    // Función para construir la estructura inicial del timeline en el HTML
     function buildTimeline(seasons) {
         let timelineHTML = '';
         Object.keys(seasons).forEach((seasonNumber, index) => {
@@ -42,58 +43,67 @@
                         <h4 class="logo-font">Temporada ${seasonNumber}</h4>
                         <p>${seasons[seasonNumber].length} episodios</p>
                     </div>
-                    <div class="timeline-content-expandable">
-                        </div>
+                    <div class="timeline-content-expandable"></div>
                 </div>
             `;
         });
         timelineContainer.innerHTML = timelineHTML;
     }
 
-    // Carga y muestra el contenido de una temporada
-    async function loadSeasonContent(seasonNumber, seasonEpisodes, contentDiv) {
-        contentDiv.innerHTML = '<div class="p-4 text-center">Cargando datos de la temporada...</div>';
+    // Función para mostrar los detalles de un episodio en el modal
+    async function showEpisodeDetails(episode) {
+        const modalTitle = document.getElementById('modal-episode-title');
+        const modalBody = document.getElementById('modal-episode-body');
 
-        // 1. Crear grid de episodios
+        modalTitle.textContent = `${episode.episode}: ${episode.name}`;
+        modalBody.innerHTML = `<p><strong>Fecha de Emisión:</strong> ${episode.air_date}</p><hr><h5>Personajes en este episodio:</h5><div class="text-center p-4"><img src="assets/portal.gif" width="100" alt="Cargando personajes..."></div>`;
+        
+        episodeModal.show();
+
+        try {
+            const characterPromises = episode.characters.map(url => fetch(url).then(res => res.json()));
+            const characters = await Promise.all(characterPromises);
+            let charactersHTML = '<div class="row g-3">';
+            characters.forEach(char => {
+                charactersHTML += `<div class="col-4 col-md-3"><div class="char-card h-100 text-center"><img src="${char.image}" alt="${char.name}" class="img-fluid rounded-circle mb-2" style="width: 80px;"><p class="small mb-0">${char.name}</p></div></div>`;
+            });
+            charactersHTML += '</div>';
+            modalBody.innerHTML = `<p><strong>Fecha de Emisión:</strong> ${episode.air_date}</p><hr><h5>Personajes en este episodio:</h5>${charactersHTML}`;
+        } catch (error) {
+            modalBody.innerHTML += '<p class="text-danger">No se pudieron cargar los personajes.</p>';
+        }
+    }
+
+    // Función para cargar el contenido de una temporada (episodios y personajes)
+    async function loadSeasonContent(seasonEpisodes, contentDiv) {
         let episodesHTML = '<h5>Episodios</h5><div class="row g-2 mb-3">';
         seasonEpisodes.forEach(ep => {
-            episodesHTML += `
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="episode-card h-100">
-                        <strong>${ep.episode}</strong>
-                        <p>${ep.name}</p>
-                    </div>
-                </div>
-            `;
+            episodesHTML += `<div class="col-6 col-md-4 col-lg-3"><button class="btn episode-button w-100 h-100" data-episode-id="${ep.id}"><strong>${ep.episode}</strong><p class="small mb-0">${ep.name}</p></button></div>`;
         });
         episodesHTML += '</div>';
-
-        // 2. Crear grid de personajes destacados
-        const characterUrls = [...new Set(seasonEpisodes.flatMap(ep => ep.characters))];
-        const randomCharacterUrls = characterUrls.sort(() => 0.5 - Math.random()).slice(0, 8); // Tomamos 8 personajes al azar
         
-        const characterPromises = randomCharacterUrls.map(url => fetch(url).then(res => res.json()));
+        const characterUrls = [...new Set(seasonEpisodes.flatMap(ep => ep.characters))].sort(() => 0.5 - Math.random()).slice(0, 8);
+        const characterPromises = characterUrls.map(url => fetch(url).then(res => res.json()));
         const characters = await Promise.all(characterPromises);
-        
         let charactersHTML = '<h5>Personajes Destacados</h5><div class="row g-2">';
         characters.forEach(char => {
-            charactersHTML += `
-                <div class="col-4 col-md-3 col-lg-2">
-                    <div class="char-card h-100">
-                        <img src="${char.image}" alt="${char.name}">
-                        <p>${char.name}</p>
-                    </div>
-                </div>
-            `;
+            charactersHTML += `<div class="col-4 col-md-3 col-lg-2"><div class="char-card h-100"><img src="${char.image}" alt="${char.name}"><p>${char.name}</p></div></div>`;
         });
         charactersHTML += '</div>';
         
-        // 3. Unir todo y mostrarlo
         contentDiv.innerHTML = `<div class="p-3">${episodesHTML}${charactersHTML}</div>`;
-        contentDiv.dataset.loaded = "true"; // Marcar como cargado
+        contentDiv.dataset.loaded = "true";
+
+        contentDiv.querySelectorAll('.episode-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const episodeId = parseInt(button.dataset.episodeId, 10);
+                const episodeData = allEpisodes.find(ep => ep.id === episodeId);
+                if (episodeData) showEpisodeDetails(episodeData);
+            });
+        });
     }
 
-    // Función principal de inicialización
+    // Función principal que inicializa el timeline
     async function initTimeline() {
         try {
             allEpisodes = await fetchAllPages(API_EPISODE_URL);
@@ -101,39 +111,28 @@
             buildTimeline(seasons);
             
             document.querySelectorAll('.timeline-content-header').forEach(header => {
-            header.addEventListener('click', async () => { 
-                const currentItem = header.closest('.timeline-item');
-                const contentDiv = currentItem.querySelector('.timeline-content-expandable');
-
-                // Comprueba si el item que se ha clickado ya está activo
-                const isAlreadyActive = currentItem.classList.contains('timeline-item--active');
-
-                // Primero, cierra todos los items que puedan estar abiertos
-                document.querySelectorAll('.timeline-item--active').forEach(activeItem => {
-                    activeItem.classList.remove('timeline-item--active');
-                    activeItem.querySelector('.timeline-content-expandable').style.maxHeight = null;
-                });
-
-                // Si el item que se clickó NO estaba activo, ábrelo.
-                if (!isAlreadyActive) {
-                    const seasonNumber = currentItem.dataset.season;
-                    const seasonEpisodes = seasons[seasonNumber];
-
-                    currentItem.classList.add('timeline-item--active'); // <-- AÑADE LA CLASE ACTIVA
-
-                    if (contentDiv.dataset.loaded !== "true") {
-                        await loadSeasonContent(seasonNumber, seasonEpisodes, contentDiv);
+                header.addEventListener('click', async () => { 
+                    const currentItem = header.closest('.timeline-item');
+                    const contentDiv = currentItem.querySelector('.timeline-content-expandable');
+                    const isAlreadyActive = currentItem.classList.contains('timeline-item--active');
+                    document.querySelectorAll('.timeline-item--active').forEach(activeItem => {
+                        activeItem.classList.remove('timeline-item--active');
+                        activeItem.querySelector('.timeline-content-expandable').style.maxHeight = null;
+                    });
+                    if (!isAlreadyActive) {
+                        currentItem.classList.add('timeline-item--active');
+                        if (contentDiv.dataset.loaded !== "true") {
+                            const seasonNumber = currentItem.dataset.season;
+                            const seasonEpisodes = seasons[seasonNumber];
+                            await loadSeasonContent(seasonEpisodes, contentDiv);
+                        }
+                        contentDiv.style.maxHeight = contentDiv.scrollHeight + 50 + "px";
                     }
-                    
-                    contentDiv.style.maxHeight = contentDiv.scrollHeight + 50 + "px";
-                }
+                });
             });
-        });
-
-
         } catch (error) {
-            timelineContainer.innerHTML = '<p class="text-center text-danger">No se pudo construir la línea temporal. El universo es un lugar caótico.</p>';
             console.error("Error al inicializar la línea de tiempo:", error);
+            timelineContainer.innerHTML = '<p class="text-center text-danger">Wubba Lubba Dub Dub! Algo salió mal.</p>';
         }
     }
 

@@ -1,21 +1,69 @@
-// js/locations.js
+// js/locations.js - Versión con Filtros Avanzados
+
 $(document).ready(function() {
-    const API_URL = 'https://rickandmortyapi.com/api/location/';
+    const API_BASE_URL = 'https://rickandmortyapi.com/api/location/';
     const gallery = $('#location-gallery');
-    const searchForm = $('#search-form');
-    const searchInput = $('#search-input');
     const paginationContainer = $('#pagination-container');
 
-    async function getLocations(url) {
+    // --- ELEMENTOS DEL FORMULARIO ---
+    const filterForm = $('#filter-form');
+    const nameInput = $('#name-input');
+    const typeInput = $('#type-input');
+    const dimensionInput = $('#dimension-input');
 
+    // Función principal para obtener y mostrar ubicaciones
+    async function getLocations(url) {
+        gallery.html(`
+            <div class="col-12 text-center py-5">
+                <img src="assets/portal.gif" width="150" alt="Cargando...">
+            </div>
+        `);
         try {
             const response = await $.ajax({ url });
             displayLocations(response.results);
             displayPagination(response.info);
         } catch (error) {
-            gallery.html('<p class="text-center text-danger">¡Oh, geez! No se pudieron cargar las ubicaciones.</p>');
+            gallery.html('<p class="text-center text-danger col-12">¡Oh, geez! No se pudieron cargar las ubicaciones o no hay resultados para tu búsqueda.</p>');
+            paginationContainer.empty();
         }
     }
+    
+    // Función para construir la URL con los filtros y lanzar la búsqueda
+    function applyLocationFilters() {
+        const params = {
+            name: nameInput.val().trim(),
+            type: typeInput.val().trim(),
+            dimension: dimensionInput.val().trim()
+        };
+
+        // $.param() de jQuery construye la cadena de consulta (ej. name=Earth&type=Planet)
+        // El segundo argumento 'true' ayuda a procesar los parámetros correctamente.
+        const queryString = $.param(params, true);
+        const finalUrl = `${API_BASE_URL}?${queryString}`;
+        
+        getLocations(finalUrl);
+    }
+
+
+    // --- EVENT LISTENERS ---
+
+    // Al enviar el formulario
+    filterForm.on('submit', function(e) {
+        e.preventDefault();
+        applyLocationFilters();
+    });
+
+    // Para la paginación
+    paginationContainer.on('click', '.page-link', function(e) {
+        e.preventDefault();
+        const url = $(this).data('url');
+        if (url) {
+            getLocations(url);
+        }
+    });
+
+
+    // --- OTRAS FUNCIONES (sin cambios) ---
 
     function displayLocations(locations) {
         gallery.empty();
@@ -36,7 +84,6 @@ $(document).ready(function() {
     }
 
     function displayPagination(info) {
-        // Esta función es idéntica a la de app.js
         paginationContainer.empty();
         let paginationHTML = '<ul class="pagination">';
         if (info.prev) {
@@ -53,19 +100,6 @@ $(document).ready(function() {
         paginationContainer.html(paginationHTML);
     }
     
-    paginationContainer.on('click', '.page-link', function(e) {
-        e.preventDefault();
-        const url = $(this).data('url');
-        if (url) {
-            getLocations(url);
-        }
-    });
-
-    searchForm.on('submit', function(e) {
-        e.preventDefault();
-        const searchTerm = searchInput.val().trim();
-        getLocations(`${API_URL}?name=${searchTerm}`);
-    });
-
-    getLocations(API_URL);
+    // Carga inicial de ubicaciones
+    getLocations(API_BASE_URL);
 });

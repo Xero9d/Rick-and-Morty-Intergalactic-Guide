@@ -29,13 +29,26 @@
     <main class="container py-5">
         <h1 class="text-center logo-font accent-color mb-4">Explorador de Ubicaciones</h1>
 
-        <div class="row mb-4">
-            <div class="col-md-6 offset-md-3">
-                <form id="search-form">
-                    <div class="input-group">
-                        <input type="text" id="search-input" class="form-control" placeholder="Busca una ubicación por nombre...">
-                        <button class="btn btn-primary cta-button" type="submit">Buscar</button>
+        <div class="row mb-4 justify-content-center">
+            <div class="col-lg-10">
+                <form id="filter-form" class="row g-3 align-items-center">
+
+                    <div class="col-md-4">
+                        <input type="text" id="name-input" class="form-control" placeholder="Busca por nombre...">
                     </div>
+
+                    <div class="col-md-3">
+                        <input type="text" id="type-input" class="form-control" placeholder="Filtra por tipo (p.ej. Planet)">
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="text" id="dimension-input" class="form-control" placeholder="Filtra por dimensión (p.ej. C-137)">
+                    </div>
+
+                    <div class="col-md-1">
+                        <button class="btn cta-button w-100" type="submit">Ir</button>
+                    </div>
+                    
                 </form>
             </div>
         </div>

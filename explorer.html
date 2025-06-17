@@ -29,13 +29,37 @@
     <main class="container py-5">
         <h1 class="text-center logo-font accent-color mb-4">Explorador de Personajes</h1>
 
-        <div class="row mb-4">
-            <div class="col-md-6 offset-md-3">
-                <form id="search-form">
-                    <div class="input-group">
-                        <input type="text" id="search-input" class="form-control" placeholder="Busca un personaje por nombre...">
-                        <button class="btn btn-primary cta-button" type="submit">Buscar</button>
+        <div class="row mb-4 justify-content-center">
+            <div class="col-lg-10">
+                <form id="filter-form" class="row g-3 align-items-center">
+                    
+                    <div class="col-md-5">
+                        <input type="text" id="search-input" class="form-control" placeholder="Busca por nombre...">
                     </div>
+                    
+                    <div class="col-md-3">
+                        <select id="status-filter" class="form-select">
+                            <option value="">Todo estado</option>
+                            <option value="alive">Vivo</option>
+                            <option value="dead">Muerto</option>
+                            <option value="unknown">Desconocido</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <select id="gender-filter" class="form-select">
+                            <option value="">Todo género</option>
+                            <option value="female">Femenino</option>
+                            <option value="male">Masculino</option>
+                            <option value="genderless">Sin género</option>
+                            <option value="unknown">Desconocido</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-1">
+                        <button class="btn cta-button w-100" type="submit">Ir</button>
+                    </div>
+
                 </form>
             </div>
         </div>
