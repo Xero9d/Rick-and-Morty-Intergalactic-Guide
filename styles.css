@@ -450,7 +450,7 @@ body.page-fade-out {
     .timeline-item.timeline-item--active {
         left: 0 !important;
         width: 100%;
-        padding-left: 70px;
+        /* padding-left: 70px; */
     }
 }
 
