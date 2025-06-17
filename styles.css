@@ -1,16 +1,11 @@
-/*
-    Hoja de Estilos Definitiva
-    Guía Intergaláctica de Rick and Morty
-*/
-
-/* --- VARIABLES GLOBALES Y PALETA --- */
+/* --- VARIABLES GLOBALES Y PALETA, sirve para generar una serie de variables de color, o tipografías a las que llamar fácilmente después, evitando tener que poner siempre los mismos rgba o las tipografías --- */
 :root {
     --card-bg: rgba(15, 23, 42, 0.6);
     --card-border: rgba(148, 163, 184, 0.2);
     --text-color: #E0E0E0;
-    --text-color-darker: #a0a0b0; /* Un gris más sutil para texto secundario */
-    --accent-color: #97F024; /* Verde portal para partículas */
-    --accent-color-2: #00BCD4; /* Cian eléctrico para acentos secundarios */
+    --text-color-darker: #a0a0b0;
+    --accent-color: #97F024;
+    --accent-color-2: #00BCD4; 
     --font-logo: 'Luckiest Guy', cursive;
     --font-body: 'Roboto', sans-serif;
 }
@@ -75,6 +70,57 @@ footer .container {
 
 .accent-color {
     color: var(--accent-color);
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: var(--card-bg) !important; /* !important para sobreescribir .bg-dark de Bootstrap */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.navbar .nav-link {
+    font-weight: bold;
+    color: var(--text-color-darker);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el ratón por encima de un enlace */
+.navbar .nav-link:hover {
+    color: var(--text-color);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Estilo para el enlace de la página activa */
+.navbar .nav-link.active {
+    color: var(--accent-color);
+}
+
+/* Estilo para el brand/logo */
+.navbar .navbar-brand:hover {
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+/* FOOTER */
+.site-footer {
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--card-border);
+    color: var(--text-color-darker);
+}
+
+.site-footer a {
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.site-footer a:hover {
+    text-shadow: 0 0 8px var(--accent-color);
+    transform: translateY(-2px);
 }
 
 /* --- HERO SECTION --- */

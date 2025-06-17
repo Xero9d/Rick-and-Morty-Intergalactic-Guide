@@ -1,5 +1,3 @@
-// js/app.js - Versión con Filtros Avanzados
-
 $(document).ready(function() {
     const API_BASE_URL = 'https://rickandmortyapi.com/api/character/';
     const gallery = $('#character-gallery');
@@ -36,7 +34,7 @@ $(document).ready(function() {
 
     // Función para construir la URL con los filtros actuales y lanzar la búsqueda
     function applyFilters() {
-        // URLSearchParams es una forma moderna y segura de construir URLs con parámetros
+
         const params = new URLSearchParams();
         
         const name = searchInput.val().trim();

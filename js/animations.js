@@ -26,13 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(section);
     });
 });
-// js/particles-config.js
 
 tsParticles.load("particles-js", {
     fpsLimit: 60,
     particles: {
         number: {
-            value: 100, // Un poco más de densidad
+            value: 100, 
             density: {
                 enable: true,
                 value_area: 800
@@ -54,11 +53,11 @@ tsParticles.load("particles-js", {
             random: true,
         },
         line_linked: {
-            enable: false // Mantenemos las líneas desactivadas
+            enable: false
         },
         move: {
             enable: true,
-            speed: 1.5, // Un poco más rápidas
+            speed: 1.5, 
             direction: "none",
             random: true,
             straight: false,

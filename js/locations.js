@@ -1,5 +1,3 @@
-// js/locations.js - Versión con Filtros Avanzados
-
 $(document).ready(function() {
     const API_BASE_URL = 'https://rickandmortyapi.com/api/location/';
     const gallery = $('#location-gallery');
@@ -36,8 +34,6 @@ $(document).ready(function() {
             dimension: dimensionInput.val().trim()
         };
 
-        // $.param() de jQuery construye la cadena de consulta (ej. name=Earth&type=Planet)
-        // El segundo argumento 'true' ayuda a procesar los parámetros correctamente.
         const queryString = $.param(params, true);
         const finalUrl = `${API_BASE_URL}?${queryString}`;
         
@@ -63,7 +59,7 @@ $(document).ready(function() {
     });
 
 
-    // --- OTRAS FUNCIONES (sin cambios) ---
+    // --- OTRAS FUNCIONES ---
 
     function displayLocations(locations) {
         gallery.empty();

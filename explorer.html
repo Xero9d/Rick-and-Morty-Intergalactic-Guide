@@ -10,6 +10,7 @@
 </head>
 <body>
 
+    <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand logo-font" href="index.html">Guía Intergaláctica</a>
@@ -26,6 +27,7 @@
         </div>
     </nav>
     
+    <!-- BARRA DE BÚSQUEDA DE PERSONAJES CON FILTROS -->
     <main class="container py-5">
         <h1 class="text-center logo-font accent-color mb-4">Explorador de Personajes</h1>
 
@@ -71,6 +73,7 @@
             </nav>
     </main>
 
+    <!-- MODAL DE LOS PERSONAJES -->
     <div class="modal fade" id="characterModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -84,6 +87,7 @@
         </div>
     </div>
 
+    <!-- MODAL DE LOS EPISODIOS -->
     <div class="modal fade" id="episodeModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -96,10 +100,15 @@
         </div>
     </div>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2025 - Creado por Ricardo Gracia Otálvaro.</p>
+    <!-- FOOTER -->
+    <footer class="site-footer text-center py-4 mt-5">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap">
+            <p class="mb-0 small">&copy; 2025 - Creado por Ricardo Gracia Otálvaro.</p>
+            <p class="mb-0 small">Datos proporcionados por <a href="https://rickandmortyapi.com/" target="_blank" class="accent-color">The Rick and Morty API</a>.</p>
+        </div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/app.js"></script>
